@@ -10,5 +10,5 @@ REST API endpoints:
 -  [GET] - /channels/{id} =>. Retrieves a list of messages in the advertised channels by a channel ID.
 -  [PUT] /messages/{id} =>. Updates a message by a message ID. It needs a body like this: { "Message content": "New content of the message to update" }.
 -  [DELETE] - /messagess/{id} => Deletes a a message by a message ID.
-  
 
+Note: I have filled in the two tables with some Data, so you can run the program directly without having to enter any Data.

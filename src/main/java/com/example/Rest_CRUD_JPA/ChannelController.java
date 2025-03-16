@@ -28,7 +28,8 @@ public class ChannelController {
 
     @PostMapping
     public ResponseEntity<Channel> createChannel(@RequestBody Channel channel) {
-        return ResponseEntity.ok(channelService.createChannel(channel));
+        Channel channels=channelService.createChannel(channel);
+        return ResponseEntity.ok(channels);
     }
 
 
