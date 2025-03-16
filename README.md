@@ -4,7 +4,7 @@
  
 REST API endpoints:
 -  [GET]  - /channels/ => Retrieves a list of advertised channels.
--  [POST] - /channels/ => creates a new advertised channel. It needs a body like this: { "Channel Name": "Name of the channel" }.
+-  [POST] - /channels/ => creates a new advertised channel. It needs a body like this: { "Channel name": "Name of the channel" }.
 -  [DELETE] - /channels/{id} => Deletes a advertised channel by a channel ID
 -  [PUT] /channels/{id} => Creates a new message in advertised channel by a channel ID. It needs a body like this: { "Message content": "Content of the message" }.
 -  [GET] - /channels/{id} =>. Retrieves a list of messages in the advertised channels by a channel ID.
