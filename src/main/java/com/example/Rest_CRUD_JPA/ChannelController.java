@@ -1,8 +1,6 @@
 package com.example.Rest_CRUD_JPA;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,25 +44,29 @@ public class ChannelController {
 
     @PutMapping("{id}")
     public ResponseEntity<Message> addMessageToChannel(@PathVariable Long id, @RequestBody Message message) {
-        return channelService.getChannelById(id)
-                .map(channel -> {
-                    message.setChannel(channel);
-                    Message savedMessage = messageService.addMessage(message);
-                    return new ResponseEntity<>(savedMessage, HttpStatus.CREATED);
-                })
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Channel channel=channelService.getChannelById(id);
+        if (channel !=null){
+            message.setChannel(channel);
+            messageService.addMessage(message);
+            return ResponseEntity.ok(message);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
-    // Get a list of all messages
+    // Get a list of all messages by channel ID
 
     @GetMapping("{id}")
     public ResponseEntity<List<MessageContentDTO>> getMessagesByChannelId(@PathVariable Long id) {
-        Channel channel = channelService.getChannelById(id).orElseThrow(() -> new ChannelNotFoundException("Channel not found for ID " + id));
-        List<Message> messages = messageService.getMessagesByChannel(channel);
-        List<MessageContentDTO> contentList = messages.stream().map(message -> new MessageContentDTO(
-                                message.getId(), message.getName()))
-                        .collect(Collectors.toList());
-        return ResponseEntity.ok(contentList);
+        Channel channel = channelService.getChannelById(id);
+        if (channel !=null){
+            List<Message> messages = messageService.getMessagesByChannel(channel);
+            List<MessageContentDTO> contentList = messages.stream().map(message -> new MessageContentDTO(
+                            message.getId(), message.getName())).toList();
+            return ResponseEntity.ok(contentList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

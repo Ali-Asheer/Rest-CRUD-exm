@@ -37,7 +37,8 @@ public class ChannelService {
 
     // Get Channel by Id
 
-    public Optional<Channel> getChannelById(Long id) {
-        return channelRepository.findById(id);
+    public Channel getChannelById(Long id) {
+        return channelRepository.findById(id).orElse(null);
+
     }
 }
