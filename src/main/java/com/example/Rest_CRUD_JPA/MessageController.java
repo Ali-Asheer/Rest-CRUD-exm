@@ -24,7 +24,7 @@ public class MessageController {
     // Delete message by ID
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteMessage(@PathVariable Long id) {
+    public ResponseEntity<Message> deleteMessage(@PathVariable Long id) {
         boolean isRemoved = messageService.deleteMessageById(id);
         if (isRemoved) {
 

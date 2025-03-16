@@ -20,7 +20,7 @@ public class Message {
     @JsonProperty("Message content")
     private String name;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "channel_id")
     private Channel channel;
 

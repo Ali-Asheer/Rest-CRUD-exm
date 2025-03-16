@@ -12,7 +12,7 @@ public class Channel {
     @JsonProperty("Channel ID")
     private Long id;
 
-    @JsonProperty("Channel Name")
+    @JsonProperty("Channel name")
     private String name;
 
     @JsonIgnore
