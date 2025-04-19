@@ -3,7 +3,7 @@
  I have build an API for a service that functions as a forum. It allows users to connect to a permanent chat channel where participants can post comments.
  
 REST API endpoints:
--  [GET]  - /channels/ <=> Retrieves a list of advertised channels.
+-  [GET]  - /channels/ <=> Retrieves a list of advertised channels..
 -  [POST] - /channels/ <=> creates a new advertised channel. It needs a body like this: 
 ```
 {"Channel name": "Name of the channel"}
