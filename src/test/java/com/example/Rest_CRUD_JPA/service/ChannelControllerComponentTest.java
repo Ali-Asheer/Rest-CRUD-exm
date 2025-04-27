@@ -5,6 +5,7 @@ import com.example.Rest_CRUD_JPA.model.Channel;
 import com.example.Rest_CRUD_JPA.repository.ChannelRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,6 +33,7 @@ class ChannelControllerComponentTest {
     }
 
     @Test
+    @DisplayName("Should return 201 CREATED when creating a new channel")
     void testCreateChannel_Returns201AndBody() throws Exception {
         Channel input = new Channel(null, "Testkanal");
         Channel saved = new Channel(1L, "Testkanal");
@@ -47,6 +49,7 @@ class ChannelControllerComponentTest {
     }
 
     @Test
+    @DisplayName("Should return 200 OK with channel details when channel exists")
     void testGetChannelById_Returns200() throws Exception {
         Channel found = new Channel(2L, "Nyheter");
 
@@ -59,6 +62,7 @@ class ChannelControllerComponentTest {
     }
 
     @Test
+    @DisplayName("Should return 404 NOT FOUND when channel does not exist")
     void testGetChannelById_Returns404IfNotFound() throws Exception {
         when(mockRepository.findById(99L)).thenReturn(Optional.empty());
 
@@ -66,12 +70,5 @@ class ChannelControllerComponentTest {
                 .andExpect(status().isNotFound());
     }
 }
-//    Vad testas?	Ja
-//    REST-controller	✅
-//    HTTP-status och JSON-innehåll	✅
-//    Verkligt tjänstelager (Service)	✅
-//    Mockat repository	✅
-//    Ingen riktig databas	✅
-//    Inget Spring Boot context krävs	✅ (MockMvcBuilders.standaloneSetup)
 
 

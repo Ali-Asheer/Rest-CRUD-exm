@@ -1,23 +1,45 @@
-## Rest CRUD med JPA
+## Testing Strategy for Java Spring Boot Project
 
- I have build an API for a service that functions as a forum. It allows users to connect to a permanent chat channel where participants can post comments.
+This project includes examples of three types of testing in a Spring Boot application:  
+**1. Unit Test**  
+**2. Component/Service Test**  
+**3. Integration Test**
  
-REST API endpoints:
--  [GET]  - /channels/ <=> Retrieves a list of advertised channels..
--  [POST] - /channels/ <=> creates a new advertised channel. It needs a body like this: 
-```
-{"Channel name": "Name of the channel"}
-```
--  [DELETE] - /channels/{id} <=> Delete a advertised channel by a channel ID
--  [PUT] /channels/{id} <=> Creates a new message in advertised channel by a channel ID. It needs a body like this:
-```
-{"Message content": "Content of the message"}
-```
--  [GET] - /channels/{id} <=> Retrieves a list of messages in the advertised channels by a channel ID.
--  [PUT] /messages/{id} <=> Updates a message by a message ID. It needs a body like this:
-```
-{"Message content": "New content of the message to update"}
-```
--  [DELETE] - /messages/{id} => Delete a message by a message ID.
+---
 
-Note: I have filled in the two tables with some Data, so you can run the program directly without having to enter any Data.
+## 1. Unit Test
+
+### Purpose:
+To test a ChannelServiceTest class **in isolation**, without loading Spring context or using a real database.
+
+### Example:
+1. Should save a new channel successfully.(To test if creates channel and save it )
+2. Should return channel by ID when it exists.(To test if a channel should return if its id exists)
+
+
+## 2. Component/Service Test
+### Purpose:
+To test a ChannelControllerComponentTest together with the real service layer (@Service), while mocking the repository.
+
+### Example:
+1. Should return 201 CREATED when creating a new channel.(To test if creates channel )
+2. Should return 200 OK with channel details when channel exists.(To test if a channel should return by id )
+3. Should return 404 NOT FOUND when channel does not exist.(To test if a channel not found )
+
+
+## 3. Integration Test
+### Purpose:
+To test the full flow from HTTP → Controller → Service → Repository → Database.
+
+### Example:
+1. Should create a channel and retrieve it successfully via HTTP.(To test if creates channel and save it )
+
+
+## How is this test isolated from production data?
+The annotation @ActiveProfiles("test") tells Spring Boot to use a separate config file.
+which was (src/main/resources/application-test.properties). In this configuration we create a new database (my_integration_test_db). And this was a temporary, and it is cleared after the test finishes. And this ensures that no real data is touched.
+
+
+
+
+

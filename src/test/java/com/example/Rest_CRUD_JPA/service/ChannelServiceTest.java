@@ -23,7 +23,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    @DisplayName("Should save channel")
+    @DisplayName("Should save a new channel successfully")
     void testCreateChannel_ShouldReturnSavedChannel() {
         // Arrange
         Channel channel = new Channel();
@@ -41,7 +41,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    @DisplayName("Should return channel by Id if exists ")
+    @DisplayName("Should return channel by ID when it exists")
     void testGetChannelById_ShouldReturnChannelIfExists() {
         // Arrange
         Long channelId = 1L;
@@ -59,21 +59,4 @@ public class ChannelServiceTest {
         assertEquals("News", result.getName());
         verify(mockRepository).findById(channelId);
     }
-
-
-
-
-//    Teknologier som används:
-//            ✅ Spring Boot
-//
-//✅ Spring MVC (@RestController)
-//
-//✅ Spring Data JPA (mockas i test)
-//
-//✅ JUnit 5
-//
-//            ✅ Mockito
-//
-//✅ MockMvc
-
 }

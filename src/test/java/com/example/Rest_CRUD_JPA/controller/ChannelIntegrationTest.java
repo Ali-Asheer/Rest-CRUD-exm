@@ -2,6 +2,7 @@ package com.example.Rest_CRUD_JPA.controller;
 
 
 import com.example.Rest_CRUD_JPA.model.Channel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,7 @@ class ChannelIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
+    @DisplayName("Should create a channel and retrieve it successfully via HTTP")
     public void testCreateAndGetChannelIdByHttp(){
         Channel channel = new Channel(null, "Radio");
 
@@ -34,13 +36,13 @@ class ChannelIntegrationTest {
 
         assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
 
-        Long channelId = postResponse.getBody().getId();
+        Long channelId = Objects.requireNonNull(postResponse.getBody()).getId();
 
         ResponseEntity<Channel> getResponse =
                 restTemplate.getForEntity("http://localhost:"+port+"/channels/"+ channelId, Channel.class);
 
         assertEquals(HttpStatus.OK, getResponse.getStatusCode());
-        assertEquals("Radio", getResponse.getBody().getName());
+        assertEquals("Radio", Objects.requireNonNull(getResponse.getBody()).getName());
 
     }
 }
