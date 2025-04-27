@@ -1,4 +1,4 @@
-## Testing Strategy for Java Spring Boot Project
+## Testning i Spring Boot
 
 This project includes examples of three types of testing in a Spring Boot application:  
 **1. Unit Test**  
@@ -29,7 +29,7 @@ To test a ChannelControllerComponentTest together with the real service layer (@
 
 ## 3. Integration Test
 ### Purpose:
-To test the full flow from HTTP → Controller → Service → Repository → Database.
+To test the full flow from HTTP → Controller → Service → Repository → Database. Test class is (ChannelIntegrationTest)
 
 ### Example:
 1. Should create a channel and retrieve it successfully via HTTP.(To test if creates channel and save it )
